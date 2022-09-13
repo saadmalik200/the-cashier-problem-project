@@ -36,7 +36,7 @@ function checkCashRegister(price, cash) {
 
     let output = "";
     for (let i = 0; i < currency.length; i++) {
-      currency[i][1] = parseFloat(currency[i][1]).toFixed(2);
+      currency[i][1] = parseFloat(currency[i][1]);
 
       let number = parseFloat(
         Math.floor(changeDue.toFixed(2) / currency[i][1])
@@ -57,7 +57,10 @@ function checkCashRegister(price, cash) {
           " " +
           currency[j][0] +
           " " +
+          "(" +
+          "€" +
           currency[j][1] +
+          ")" +
           "\n";
       }
     }
