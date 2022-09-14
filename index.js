@@ -1,3 +1,4 @@
+const chalk = require("chalk");
 const prompt = require("prompt-sync")({ sigint: true });
 let readline = require("readline");
 let rl = readline.createInterface(process.stdin, process.stdout);
@@ -30,7 +31,13 @@ function checkCashRegister(price, cash) {
   if (changeDue >= 0) {
     let result = [];
 
-    console.log("Change Due", changeDue.toFixed(2));
+    console.log(
+      `${chalk.bgWhite.black.underline.bold(
+        "Change Due =>"
+      )} ${chalk.green.bold.bgGreen("€")}${chalk.green.bold.bgGreen(
+        changeDue.toFixed(2)
+      )}`
+    );
 
     console.log(`-----------------------------------------`);
 
@@ -70,20 +77,27 @@ function checkCashRegister(price, cash) {
     playAgainFunc();
   } else {
     console.log(
-      `You need more money, go home and bring €${Math.abs(changeDue)} more`
+      `${chalk.red("You need more money")}, go home and bring €${Math.abs(
+        changeDue
+      )} more`
     );
+    console.log(`-----------------------------------------------`);
     // console.clear();
     playAgainFunc();
   }
 }
 
 function playAgainFunc() {
-  let playAgain = prompt(`Do you have more items to buy: y/n `); // y or n
+  let playAgain = prompt(
+    chalk.bgCyan.blackBright.bold(`${"Do you have more items to buy: y/n "}`)
+  ); // y or n
 
   if (playAgain === "y") {
     console.clear();
 
-    let input = prompt("Please Enter Amount and Total Cash: ");
+    let input = prompt(
+      chalk.green.bold("Please Enter Amount and Total Cash: ")
+    );
     console.log(`--------------------------------------------`);
 
     const answerSplit = input.split(",");
@@ -91,8 +105,9 @@ function playAgainFunc() {
 
     checkCashRegister(+answerSplit[0], +answerSplit[1]);
   } else if (playAgain === "n") {
+    console.clear();
     console.log(`--------------------------------------------`);
-    console.log("Thankyou for playing ");
+    console.log(chalk.bgCyan.bold("Thankyou for your visit "));
     console.log(`--------------------------------------------`);
     rl.close();
   }
@@ -102,7 +117,7 @@ function playAgainFunc() {
 
 function inputFromUser() {
   rl.setPrompt(
-    "\x1b[1mPlease Enter \x1b[36mAmount \x1b[33mand \x1b[32mTotal Cash\x1b[0m \n"
+    "\x1b[1mPlease Enter \x1b[36mBill Amount \x1b[33mand \x1b[32mTotal Cash\x1b[0m \n"
   );
 
   rl.prompt();
