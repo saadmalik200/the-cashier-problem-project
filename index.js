@@ -113,11 +113,9 @@ function playAgainFunc() {
   }
 }
 
-// checkCashRegister(12, 50);
-
 function inputFromUser() {
   rl.setPrompt(
-    "\x1b[1mPlease Enter \x1b[36mBill Amount \x1b[33mand \x1b[32mTotal Cash\x1b[0m \n"
+    "\x1b[1mPlease Enter \x1b[36mBill Amount\x1b[0m \x1b[1mand \x1b[32mTotal Cash\x1b[0m \n"
   );
 
   rl.prompt();
@@ -132,3 +130,4 @@ function inputFromUser() {
 }
 
 inputFromUser();
+// console.log(parseFloat(0.1 + 0.2).toFixed(2));
